@@ -1,0 +1,27 @@
+
+#ifndef PROBLEM_H
+#define PROBLEM_H
+
+#include "ecos.h"
+
+{% for name, p in parms.items() -%}
+{% if p.index == None %}
+double {{name}}{{p.shape_string}};{% endif %}
+{%- endfor %}
+
+
+{# q matrix with no trailing comma #}
+idxint q[{{ dims['q'] | length }}];
+
+{% for name, array in problem_arrays['pfloat'].items() %}
+pfloat {{name}}[{{array['length']}}];{% endfor %}
+
+{% for name, array in problem_arrays['idxint'].items() %}
+idxint {{name}}[{{array['length']}}];{% endfor %}
+
+{% for name, func in native_func_defs.items() %}
+{{func.header}};{% endfor %}
+
+void gather_matrices();
+
+#endif //PROBLEM_H

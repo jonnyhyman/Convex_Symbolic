@@ -1,0 +1,5 @@
+{% for pair in assign %}double {{pair[0]}}{#
+  #}[{{pair[1].args | length}}] = {{'{'}}{#
+  #}{% for arg in pair[1] %}{{arg}}{#
+  #}{% if loop.index < pair[1].args | length %}, {% endif %}{% endfor %}{#
+  #}{% endfor %}{{'}'}}

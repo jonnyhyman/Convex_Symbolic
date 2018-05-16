@@ -1,0 +1,1 @@
+/usr/bin/gcc  -g   CMakeFiles/readme_example.dir/main.c.o CMakeFiles/readme_example.dir/problem.c.o  -o readme_example  -L/mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example/ecos -lecos -lm -Wl,-rpath,/mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example/ecos 

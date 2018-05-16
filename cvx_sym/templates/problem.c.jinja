@@ -1,0 +1,23 @@
+
+#include "problem.h"
+
+{% for name, func in native_func_defs.items() %}
+{{func.source}}{% endfor %}
+
+void gather_matrices() {
+
+    {% for func in native_functions %}
+    {{func.assign}};{% endfor %}
+
+    {% for d in dims['q'] %}
+    q[{{loop.index-1}}] = {{d}};{% endfor %}
+
+    {% for name, array in problem_arrays['pfloat'].items() %}
+    {% for value in array['values'] %}
+    {{name}}[{{loop.index-1}}] = (pfloat) {{value}};{% endfor %}{% endfor %}
+
+    {% for name, array in problem_arrays['idxint'].items() %}
+    {% for value in array['values'] %}
+    {{name}}[{{loop.index-1}}] = (idxint) {{value}};{% endfor %}{% endfor %}
+
+}
