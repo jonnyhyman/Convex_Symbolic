@@ -49,16 +49,22 @@ solution = solve(canon, verbose = True)  # returns what ecos.solve(...) returns
 print(solution['x'])
 ```
 
-#### Dependencies
+#### Requires
 
 - [Python 3.6+](https://www.python.org/),
   - Takes advantage of ordered dicts, new feature in 3.6
+
+
 - [jinja2](http://jinja.pocoo.org/docs/2.10/), template engine
 - [numpy](http://www.numpy.org/), for parameter assignment tests
+- [ECOS](https://github.com/embotech/ecos) Solver
+  - Must be placed in `__solvers__` folder and named `ecos`
+
 
 - To obtain solutions and run *all* tests
   - [ecos-python](https://github.com/embotech/ecos-python), for parameter assignment tests
   - [scipy](https://www.scipy.org/), for ecos-python input
+
 
 #### Methods
 The canonicalization methods used are mostly defined [in this paper](https://web.stanford.edu/~boyd/papers/pdf/ecos_codegen_ecc.pdf) by Chu, Parikh, Domahidi, and Boyd.
