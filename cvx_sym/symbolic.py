@@ -118,6 +118,26 @@ class Symbol(AtomicSymbol):
         if self.shape == scalar_shape:
             return self
 
+        if type(index) is slice: # pure slice
+
+            start, stop, step = index.start, index.stop, index.step
+
+            if (start is None):
+                start = 0
+
+            if (stop is None):
+                stop = self.shape[n]
+
+            if (step is None):
+                step = 1
+
+            sliced = []
+            for m in range(start, stop, step):
+
+                sliced.append(self[m,0])
+
+            return Vector(sliced)
+
         if type(index) is int or len(index) == 1:
             if self.shape[1] != 1:
                 index = (index, slice(None,None,None))
@@ -131,8 +151,14 @@ class Symbol(AtomicSymbol):
 
                     start, stop, step = i.start, i.stop, i.step
 
-                    if (start == stop == step == None):
-                        start, stop, step = 0, self.shape[n], 1
+                    if (start is None):
+                        start = 0
+
+                    if (stop is None):
+                        stop = self.shape[n]
+
+                    if (step is None):
+                        step = 1
 
                     sliced = []
                     for m in range(start, stop, step):
@@ -306,7 +332,7 @@ class Vector(AtomicSymbol):
 
         item = self.args[i0]
 
-        if type(item) in [tuple, list]:
+        if type(item) in [tuple, list, Vector]:
             return item[i1]
 
         else:

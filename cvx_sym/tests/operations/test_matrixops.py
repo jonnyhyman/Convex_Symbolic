@@ -262,3 +262,25 @@ def test_reshaping():
     assert(str(y_flat[0,1]) == str(y[0][1]))
     assert(str(y_flat[0,2]) == str(y[1][0]))
     assert(str(y_flat[0,3]) == str(y[1][1]))
+
+    reset_symbols()
+
+def test_reshaping_vector():
+    """ Test reshaping a vector (slice of a symbol in this case)"""
+
+    p = Parameter((2, (2*2)), name = 'p')
+
+    sliced = p[1,:]
+
+    print(sliced)
+
+    shaped = reshape(sliced, (2,2))
+
+    print(shaped)
+
+    assert(str(shaped[0,0]) == str(p[1][0]))
+    assert(str(shaped[0,1]) == str(p[1][1]))
+    assert(str(shaped[1,0]) == str(p[1][2]))
+    assert(str(shaped[1,1]) == str(p[1][3]))
+
+    reset_symbols()
