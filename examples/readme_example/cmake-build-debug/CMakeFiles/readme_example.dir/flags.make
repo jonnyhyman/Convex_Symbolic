@@ -6,5 +6,5 @@ C_FLAGS = -g   -std=gnu99
 
 C_DEFINES = 
 
-C_INCLUDES = -I/mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example/ecos/include -I/mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example/ecos/external/SuiteSparse_config 
+C_INCLUDES = -I/mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/examples/readme_example/ecos/include -I/mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/examples/readme_example/ecos/external/SuiteSparse_config 
 

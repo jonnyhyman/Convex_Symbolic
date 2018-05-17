@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example
+CMAKE_SOURCE_DIR = /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/examples/readme_example
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example/cmake-build-debug
+CMAKE_BINARY_DIR = /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/examples/readme_example/cmake-build-debug
 
 #=============================================================================
 # Target rules for target CMakeFiles/readme_example.dir
@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/con
 CMakeFiles/readme_example.dir/all:
 	$(MAKE) -f CMakeFiles/readme_example.dir/build.make CMakeFiles/readme_example.dir/depend
 	$(MAKE) -f CMakeFiles/readme_example.dir/build.make CMakeFiles/readme_example.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target readme_example"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/examples/readme_example/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target readme_example"
 .PHONY : CMakeFiles/readme_example.dir/all
 
 # Include target in all.
@@ -76,9 +76,9 @@ all: CMakeFiles/readme_example.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/readme_example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example/cmake-build-debug/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/examples/readme_example/cmake-build-debug/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/readme_example.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/examples/readme_example/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/readme_example.dir/rule
 
 # Convenience name for target.

@@ -1,3 +1,3 @@
-/mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example/cmake-build-debug/CMakeFiles/edit_cache.dir
-/mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example/cmake-build-debug/CMakeFiles/readme_example.dir
+/mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/examples/readme_example/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/examples/readme_example/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/examples/readme_example/cmake-build-debug/CMakeFiles/readme_example.dir

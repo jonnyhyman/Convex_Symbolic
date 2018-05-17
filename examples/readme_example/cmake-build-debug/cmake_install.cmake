@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example
+# Install script for directory: /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/examples/readme_example
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/examples/readme_example/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

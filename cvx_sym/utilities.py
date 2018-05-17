@@ -64,7 +64,7 @@ def are_args_parametric(*args):
             return True
 
 def all_args_curvature(*args):
-    
+
     if all([arg.curvature > 0 for arg in args]):
         return +1
 
@@ -76,3 +76,6 @@ def all_args_curvature(*args):
 
     else:
         return None
+
+def reshape(input, desired_shape):
+    """ Reshape input matrix into the desired shape """

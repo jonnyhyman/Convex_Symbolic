@@ -12,8 +12,8 @@ CMakeFiles/readme_example.dir/main.c.o
  ../ecos/include/spla.h
  ../ecos/include/timer.h
  ../ecos/include/wright_omega.h
- /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example/main.c
- /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example/problem.h
+ /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/examples/readme_example/main.c
+ /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/examples/readme_example/problem.h
 CMakeFiles/readme_example.dir/problem.c.o
  ../ecos/external/SuiteSparse_config/SuiteSparse_config.h
  ../ecos/include/cone.h
@@ -25,5 +25,5 @@ CMakeFiles/readme_example.dir/problem.c.o
  ../ecos/include/spla.h
  ../ecos/include/timer.h
  ../ecos/include/wright_omega.h
- /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example/problem.c
- /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/projects_folder/readme_example/problem.h
+ /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/examples/readme_example/problem.c
+ /mnt/c/Users/__jonny__/Dropbox/Compute/convexoptimization/convex_symbolic/examples/readme_example/problem.h
