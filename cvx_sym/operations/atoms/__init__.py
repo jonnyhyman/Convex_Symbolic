@@ -31,11 +31,17 @@ class Atom:
     def __rmul__(self, other):
         return ops.mul(other, self)
 
+    def __truediv__(self, other):
+        return self.__div__(other)
+
+    def __rtruediv__(self, other):
+        return self.__rdiv__(other)
+
     def __div__(self, other):
-        return ops.atoms.div(self, other)
+        return ops.div(self, other)
 
     def __rdiv__(self, other):
-        return ops.atoms.div(other, self)
+        return ops.div(other, self)
 
     def simplify(self):
         return self

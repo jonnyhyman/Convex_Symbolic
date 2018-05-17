@@ -67,11 +67,17 @@ class AtomicSymbol:
     def __rmul__(self, other):
         return ops.mul(other, self)
 
+    def __truediv__(self, other):
+        return self.__div__(other)
+
+    def __rtruediv__(self, other):
+        return self.__rdiv__(other)
+
     def __div__(self, other):
-        return ops.atoms.divs.div(self, other)
+        return ops.div(self, other)
 
     def __rdiv__(self, other):
-        return divs.div(other, self)
+        return ops.div(other, self)
 
     def __eq__(self, other):
         return constraints.eq(self, other)
@@ -312,7 +318,10 @@ class Vector(AtomicSymbol):
         self.curvature = util.all_args_curvature(*args)
 
     def __str__(self):
-        string = '<' + ''.join([str(a)+', ' for a in self.args])[:-2] + '>'
+        if len(self.args) > 6:
+            string = '<' + str(self.shape) + ' *' + str(self[0,0]) + '>'
+        else:
+            string = '<' + ''.join([str(a)+', ' for a in self.args])[:-2] + '>'
         return string
 
     def __repr__(self):

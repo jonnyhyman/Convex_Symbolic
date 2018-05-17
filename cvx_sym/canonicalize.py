@@ -73,7 +73,6 @@ class Canonicalize(Problem):
 
         elif issubclass(type(input), sym.Vector):
             if debug == 2: print('... Vector', input)
-
             aux = sym.Symbol(input.shape)
             self.constraints += eq(aux, input).expand()
             # expand the constraint to ensure any scalar functions are
@@ -102,8 +101,7 @@ class Canonicalize(Problem):
                     return aux
 
                 # Non-Parametric Vector
-                elif (issubclass(type(arg), sym.Vector) and
-                not all([ type(ele) is sym.Parameter for ele in arg]) ):
+                elif (issubclass(type(arg), sym.Vector) and not arg.parametric):
 
                     if debug == 2: print('... ... With Vector Arg')
 

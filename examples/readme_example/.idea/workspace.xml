@@ -120,12 +120,12 @@
       <option name="presentableId" value="Default" />
       <updated>1526494898665</updated>
       <workItem from="1526494903846" duration="521000" />
-      <workItem from="1526568374603" duration="1902000" />
+      <workItem from="1526568374603" duration="2197000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2423000" />
+    <option name="totallyTimeSpent" value="2718000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -135,7 +135,7 @@
       <window_info anchor="bottom" id="Messages" order="7" weight="0.3297414" />
       <window_info anchor="bottom" id="CMake" order="7" weight="0.3297414" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3297414" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3297414" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
