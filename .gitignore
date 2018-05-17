@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# Solver (packaged separately)
+ecos/
+
 # Distribution / packaging
 .Python
 build/

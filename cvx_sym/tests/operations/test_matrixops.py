@@ -7,6 +7,8 @@ from cvx_sym.operations.atoms import sums
 from cvx_sym.operations import mul
 from cvx_sym.constraints import le
 
+from cvx_sym.utilities import reshape
+
 def list_shape(L):
     if type(L[0]) is list:
         return len(L), len(L[0])
@@ -199,3 +201,64 @@ def test_elementwiselist_into_function():
     assert( len(constr.expr.args[0].args) == 6 )
 
     reset_symbols()
+
+def test_reshaping():
+    """ Test reshaping a symbol """
+
+    x = Symbol((6), name = 'x')
+
+    print(x, x.shape, '-->', (3,2), end = ' --> ')
+
+    x32 = reshape(x, (3,2))
+    assert(x32.shape == (3,2))
+
+    print(x32, x32.shape)
+
+    # Must do string comparison because 'is' will not be true,
+    # and '==' will try making a constraint
+    assert(str(x32[0,0]) == str(x[0][0]))
+    assert(str(x32[0,1]) == str(x[1][0]))
+    assert(str(x32[1,0]) == str(x[2][0]))
+    assert(str(x32[1,1]) == str(x[3][0]))
+    assert(str(x32[2,0]) == str(x[4][0]))
+    assert(str(x32[2,1]) == str(x[5][0]))
+
+    print(x, x.shape, '-->', (2,3), end = ' --> ')
+
+    x23 = reshape(x, (2,3))
+    assert(x23.shape == (2,3))
+
+    print(x23, x23.shape)
+
+    # Must do string comparison because 'is' will not be true,
+    # and '==' will try making a constraint
+    assert(str(x23[0,0]) == str(x[0][0]))
+    assert(str(x23[0,1]) == str(x[1][0]))
+    assert(str(x23[0,2]) == str(x[2][0]))
+    assert(str(x23[1,0]) == str(x[3][0]))
+    assert(str(x23[1,1]) == str(x[4][0]))
+    assert(str(x23[1,2]) == str(x[5][0]))
+
+    y = Symbol((2,2), name = 'y')
+
+    print(y, y.shape, '-->', (4,1), end = ' --> ')
+
+    y_flat = reshape(y, (4,1) )
+
+    print(y_flat, y_flat.shape)
+
+    assert(str(y_flat[0,0]) == str(y[0][0]))
+    assert(str(y_flat[1,0]) == str(y[0][1]))
+    assert(str(y_flat[2,0]) == str(y[1][0]))
+    assert(str(y_flat[3,0]) == str(y[1][1]))
+
+    print(y, y.shape, '-->', (1,4), end = ' --> ')
+
+    y_flat = reshape(y, (1,4) )
+
+    print(y_flat, y_flat.shape)
+
+    assert(str(y_flat[0,0]) == str(y[0][0]))
+    assert(str(y_flat[0,1]) == str(y[0][1]))
+    assert(str(y_flat[0,2]) == str(y[1][0]))
+    assert(str(y_flat[0,3]) == str(y[1][1]))

@@ -294,6 +294,9 @@ class Vector(AtomicSymbol):
 
     def __getitem__(self, index):
 
+        if type(index) is int:
+            index = [index]
+
         if not self.trans:  # Not a transpose. Act normal!
             i0 = index[0]
             i1 = index[1] if len(index) > 1 else 0

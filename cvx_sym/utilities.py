@@ -1,6 +1,7 @@
 from cvx_sym.conventions import scalar_shape
 from cvx_sym.errors import ShapeError
 from cvx_sym import symbolic as sym
+import copy
 
 def determine_shape(args):
 
@@ -79,3 +80,38 @@ def all_args_curvature(*args):
 
 def reshape(input, desired_shape):
     """ Reshape input matrix into the desired shape """
+
+    # Ensure the input can be reshaped as desired
+
+    if not issubclass(type(input), sym.Symbol):
+        raise(TypeError("Cannot reshape non-symbolic inputs"))
+
+    in_space = 0
+    for s in input.shape:
+        in_space *= s
+
+    out_space = 0
+    for s in desired_shape:
+        out_space *= s
+
+    if (in_space != out_space):
+        raise(ShapeError("Cannot reshape "  + str(input.shape) + " into "
+                                            + str(desired_shape)))
+
+    # Since symbols always create their self.matrices in row-major order,
+    # we can simply reassign the row and column lists with the new shape
+
+    # First build out the entire self.matrix, preserves naming of elements
+    input.__iter__()
+    reshaped = copy.deepcopy(input)
+
+    reshaped.matrix['row'] = []
+    reshaped.matrix['col'] = []
+
+    for i in range(desired_shape[0]):
+        for j in range(desired_shape[1]):
+            reshaped.matrix['row'] += [i]
+            reshaped.matrix['col'] += [j]
+
+    reshaped.shape = desired_shape
+    return reshaped
