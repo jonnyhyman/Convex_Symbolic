@@ -1,0 +1,66 @@
+
+#include "problem.h"
+
+{% for name, func in native_func_defs.items() %}
+{{func.source}}{% endfor %}
+
+void gather_matrices() {
+
+    {% for func in native_functions %}
+    {{func.assign}};{% endfor %}
+
+    {% for d in dims['q'] %}
+    q[{{loop.index-1}}] = {{d}};{% endfor %}
+
+    {% for name, array in problem_arrays['pfloat'].items() %}
+    {% for value in array['values'] %}
+    {{name}}[{{loop.index-1}}] = (pfloat) {{value}};{% endfor %}{% endfor %}
+
+    {% for name, array in problem_arrays['idxint'].items() %}
+    {% for value in array['values'] %}
+    {{name}}[{{loop.index-1}}] = (idxint) {{value}};{% endfor %}{% endfor %}
+
+}
+
+int solve()
+{
+
+    gather_matrices();
+
+    solver_work = ECOS_setup(
+             {{ n }},  // number of vars
+             {{ m }},  // number of inequality constrs
+             {{ p }},  // p is number of equality constrs
+
+             // l is positive orthant dimension
+             // the first l elements of s are >= 0
+             // in Gx + s = h
+             {{ dims['l'] }},
+             // len(q), number of cones
+             {{ dims['q'] | length}},
+             q,    // dimension of each cone
+             0,    // number of exponential cones (UNSUPPORTED)
+             Gpr,  // G coeffs  (CCS)
+             Gjc,  // col_idx   (CCS)
+             Gir,  // row_ptr   (CCS)
+             {% if p!=0 %}Apr{% else %}0{% endif %},  // A coeffs  (CCS)
+             {% if p!=0 %}Ajc{% else %}0{% endif %},  // col_idx   (CCS)
+             {% if p!=0 %}Air{% else %}0{% endif %},  // row_ptr   (CCS)
+             c,   // obj coeffs
+             h,  // Gx cone offsets
+             {% if p!=0 %}b{% else %}0{% endif %}  // Ax offsets
+    );
+
+    if (solver_work != NULL){
+        printf("About to solve \n");
+    } else {
+        printf("About to solve, but solver work is NULL \n");
+    }
+
+
+    return (int) ECOS_solve(solver_work);
+}
+
+void clean(){
+    ECOS_cleanup(solver_work, 0);
+}

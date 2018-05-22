@@ -1,6 +1,7 @@
 from cvx_sym.operations.functions import Function
 from cvx_sym.canonicalize import Canonicalize
 from cvx_sym.symbolic import Symbol, Vector
+from cvx_sym import templates
 import jinja2
 import pathlib
 
@@ -12,7 +13,8 @@ class Generate:
     """ Canonicalizes problem and writes the embedded code """
 
     def __init__(self, problem, name = 'embedded', folder = None,
-                                lang = 'c', verbose = False):
+                                lang = 'c', verbose = False,
+                                temp = 'main_set'):
         lang = lang.lower()
 
         self.problem = problem
@@ -22,6 +24,8 @@ class Generate:
             self.location = pathlib.Path(self.name)
         else:
             self.location = pathlib.Path(folder) / self.name
+
+        self.set = temp  # which set of templates to use?
 
         self.canonical = Canonicalize(self.problem, verbose = verbose)
 
@@ -37,7 +41,7 @@ class Generate:
         template = name + '.jinja'
 
         # Read the template
-        with open(cvx_sym_path / 'templates' / template, 'r') as f:
+        with open(cvx_sym_path / 'templates' / self.set / template, 'r') as f:
             template = f.read()
 
         # Build the template
@@ -162,10 +166,9 @@ class Generate:
         self.context['native_func_defs'] = self.native_func_defs # add defines
 
         self.pull_solver()
-        self.render('main.c', self.location.absolute())
-        self.render('problem.h', self.location.absolute())
-        self.render('problem.c', self.location.absolute())
-        self.render('CMakeLists.txt', self.location.absolute())
+
+        for template in templates.template_files_of_set[self.set]:
+            self.render(template, self.location.absolute())
 
 class ParametricFunction:
     """ Object to encapsulate a function which needs to be represented
