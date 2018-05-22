@@ -225,7 +225,7 @@ class Canonicalize(Problem):
                 matrix['col'].append(m)
                 matrix['val'].append(constr.expr.coefficient_of(v))
 
-                if self.verbose == 1:
+                if self.verbose >= 1:
                     print(constr.expr,'>>>',v,'>>>', matrix['val'][-1])
 
         # -1 * offset because in constr.expr it's on the left hand side
@@ -254,11 +254,13 @@ class Canonicalize(Problem):
         self.h = []
 
         # Build the c vector : all the coefficients making up the objective
-        for v_name, v in self.vars.items():
+        for v_name in self.vars:
 
-            if (hasattr(self.objective,'coefficient_of') and
-                self.objective.coefficient_of(v)):
+            if self.verbose==2: print('o',end='',flush=True)
 
+            v = self.vars[v_name]
+
+            if (hasattr(self.objective,'coefficient_of')):
                 # Will add a Constant(0) if v not in self.objective
                 self.c += [self.objective.coefficient_of(v)]
 
@@ -271,6 +273,8 @@ class Canonicalize(Problem):
         # Build Ax = b, and the first l rows of Gx = h
         ns = {'eq':0, 'le':0}
         for constr in self.constraints:
+
+            if self.verbose==2: print('.',end='',flush=True)
 
             if type(constr) is eq:
                 self.stuff(ns['eq'], constr, self.A, self.b)  # Ax = b
@@ -286,6 +290,8 @@ class Canonicalize(Problem):
 
         for constr in self.constraints:
             if type(constr) is SecondOrderConeConstraint:
+
+                if self.verbose==2: print('s',end='',flush=True)
 
                 # Gx <= h, with q += [cone dims]
                 # Yo dawg, we heard you like constraints...
@@ -316,9 +322,14 @@ class Canonicalize(Problem):
 
         # First, expand any linear stuff: matrix multiplies or elementwise ops
         #print('about to expand...')
+
+        if self.verbose == 2: print('... Expanding')
+        n = 0
         expand_at = {}
-        for n, constr in enumerate(self.constraints):
+        for constr in self.constraints:
+            if self.verbose == 2: print('.',end='',flush=True)
             expand_at[n] = constr.expand()
+            n += 1
             #print('n',n,constr, expand_at[n])
 
         self.constraints = []  # reset and refill
@@ -332,8 +343,10 @@ class Canonicalize(Problem):
             print('----Canon Form----')
             print(self)
 
+        if self.verbose == 2: print('... Gathering')
         self.gather_symbols()
 
+        if self.verbose == 2: print('... Stuffing')
         # Then, stuff the problem into the canonical matrices
         self.stuff_form()
 

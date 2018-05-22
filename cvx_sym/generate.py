@@ -5,10 +5,8 @@ import jinja2
 import pathlib
 
 from distutils.dir_util import copy_tree
-from zipfile import ZipFile
-import urllib.request
 
-import os
+cvx_sym_path = pathlib.Path(__file__).parents[0]
 
 class Generate:
     """ Canonicalizes problem and writes the embedded code """
@@ -39,7 +37,7 @@ class Generate:
         template = name + '.jinja'
 
         # Read the template
-        with open(pathlib.Path('cvx_sym/templates') / template, 'r') as f:
+        with open(cvx_sym_path / 'templates' / template, 'r') as f:
             template = f.read()
 
         # Build the template
@@ -61,7 +59,7 @@ class Generate:
         # Only copy if doesn't yet exist, to enable faster compilations
         if not (self.location / 'ecos').exists():
 
-            solver_path = pathlib.Path('cvx_sym/__solvers__/ecos')
+            solver_path = cvx_sym_path / '__solvers__/ecos'
 
             copy_tree(str(solver_path.absolute()),
                       str((self.location / 'ecos').absolute()) )
@@ -179,7 +177,7 @@ class ParametricFunction:
             raise(TypeError(str(type(func))) + " is not a Function subclass. "
                     "ParametricFunction can only accept Functions.")
 
-        functions = pathlib.Path('cvx_sym/templates/functions')
+        functions = cvx_sym_path / 'templates/functions'
 
         with open(functions / func.name / 'source.jinja', 'r') as f:
             source = f.read()
