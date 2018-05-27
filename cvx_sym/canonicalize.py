@@ -278,7 +278,7 @@ class Canonicalize(Problem):
                 if t < 60:
                     print(t, ' sec remain')
                 elif t/60 > 60:
-                    print(math.modf(t/60/60)[1],'hr', round(math.modf(t/60/60)[0]*60,2) 'min remain')
+                    print(math.modf(t/60/60)[1],'hr', round(math.modf(t/60/60)[0]*60,2), 'min remain')
                 elif t > 60:
                     print(t/60, ' min remain')
 
