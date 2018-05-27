@@ -1,12 +1,10 @@
 
-#include "problem.h"
+#include "problem.hpp"
 
 {% for name, p in parms.items() -%}
 {% if p.index == None %}
 double {{name}}{%if p.shape_string != '[1][1]' %}{{p.shape_string}}{%endif%};{% endif %}
 {%- endfor %}
-
-// Put desired variables to retrieve here
 
 {# q matrix with no trailing comma #}
 idxint q[{{ dims['q'] | length }}];

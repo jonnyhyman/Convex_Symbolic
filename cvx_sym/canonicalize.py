@@ -8,6 +8,9 @@ from cvx_sym import symbolic as sym
 from cvx_sym import sparse
 import copy
 
+from time import time
+import math
+
 from cvx_sym.constraints import (Constraint, eq, le, ge,
                                     SecondOrderConeConstraint)
 
@@ -254,9 +257,31 @@ class Canonicalize(Problem):
         self.h = []
 
         # Build the c vector : all the coefficients making up the objective
+        if self.verbose == 2: track = {
+                                'sumtime':0, 'count':0, 'last':time(),
+                                'rem':len(self.vars), 'total':len(self.vars),
+                                'secper':0
+                            }
         for v_name in self.vars:
 
-            if self.verbose==2: print('o',end='',flush=True)
+            if self.verbose==2:
+                track['count'] += 1
+                track['sumtime'] += time() - track['last']
+                track['last'] = time()
+                track['secper'] = track['sumtime'] / track['count']
+                track['rem']   -= 1
+                print(100*(track['total'] - track['rem'])/track['total'], '%',
+                        end='  |  ')
+
+                t = (track['rem']*track['secper'])
+
+                if t < 60:
+                    print(t, ' sec remain')
+                elif t/60 > 60:
+                    print(math.modf(t/60/60)[1],'hr', round(math.modf(t/60/60)[0]*60,2) 'min remain')
+                elif t > 60:
+                    print(t/60, ' min remain')
+
 
             v = self.vars[v_name]
 

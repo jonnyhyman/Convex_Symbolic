@@ -11,4 +11,10 @@ template_files_of_set = {
                     'problem.c',
                     'CMakeLists.txt',
                 ],
+                
+    'prob_set_cpp':[
+                    'problem.hpp',
+                    'problem.cpp',
+                    'CMakeLists.txt',
+                ],
 }

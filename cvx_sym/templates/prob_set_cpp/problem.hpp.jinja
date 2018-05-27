@@ -7,6 +7,8 @@
 {% for name, func in native_func_defs.items() %}
 {{func.header}};{% endfor %}
 
+void gather_variables();
+
 void gather_matrices();
 
 int solve();
